@@ -4,8 +4,9 @@ IDG Python Competition, fixed topic : mini_spider
 
 Asynchronous Mini Spider with native asynchronous I/O HTTPS, and webkit support defining and implementing Remote Inject js Call \(RIJC\)  wireless protocol
 
-百度自动驾驶Python代码试题，固定科目：轻量爬虫
+Good Coder Exam Topic：轻量爬虫
 
+Abstraction:
 全异步轻量级爬虫, 原生支持Multiplexing和异步I/O，支持HTTPS, WebKit技术(定义和实现了"远程注入js调用"无线协议)
 
 异步框架python版本改编思路来自于 Guido van Rossum 在不早于2015年的社区文章[A Web Crawler With Asyncio Crotoutines](www.aosabook.org/en/500L/a-web-crawler-with-asyncio-coroutines.html#fn2), 并重点支持了webkit, https, 以及 socket 异步io回调技术改进。改进后的组件，可以水平无限扩展（任意I/O时间，包括不限socket, pipe, 磁盘文件），在不考虑单线程流量限制的情况下，最大限度利用了单线程的I/O性能。
