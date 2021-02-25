@@ -135,26 +135,20 @@ downloader剩下I/O策略，处理http/https请求，重定向，媒体文件访
 
 用于实现爬虫收录算法基类。用户可自行编写数据层，和可持久化层。所有抓群文件会被解析为dom对象，供用户进一步分析。
 
-3.3.3 mini\_spider
+3.3.3 mini_spider
 
 业务逻辑入口，屏蔽了算法层面和网络层面的问题，让用户专注于超链分析本身。
 ```
 
 版本信息
 ---
-V1.0 增加`mini\_spider`项目
+V1.0 增加`mini_spider`项目
 
 维护者
 ---
 ### owners
-* wanglei89(wanglei89@baidu.com)
+* yiakwy (yiak.wy@gmail.com)
 
 ### committers
-* wanglei89(wanglei89@baidu.com)
+* yiakwy (yiak.wy@gmail.com)
 
-讨论
----
-百度Hi交流群：暂无
-
-
-[changelog]: http://icode.baidu.com/repos/baidu/personal-code/yiakwy/blob/master:CHANGELOG.md
