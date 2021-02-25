@@ -1,0 +1,19 @@
+[ROOT_URL]
+ROOT_URL =https://www.baidu.com#https://konachan.net/post?tags=aoi_tori
+# 'MultiProducersMultiConsumers', i.e, using multi-threading model to expand band width
+# @todo TODO
+THREADING_MODEL = "OneProducerMultiConsumers"
+
+DOWN_LOADER =
+
+[ROOT_URLS]
+# Value Type : Json
+# note for rich content application which is dynamically generated, using "webkit_runtime" downloader
+ROOT_URLS = {}
+
+[RULES_SET]
+# Value Type : Json
+# xpath is perfered over primitive dom path for HTML5 documents
+RULES_SET = {
+    "Default": []
+    }
