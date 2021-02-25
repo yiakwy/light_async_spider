@@ -436,10 +436,11 @@ class Response:
         self._parse(ret)
         return ret 
 
-    def recv(self, buf_size):
+    def recv(self, buf_size, media_type=None):
         CHUNK = buf_size
         CHUNK = CHUNK or 8192
         ret = b""
+        target_size = -1
         while True:
             chunk = yield from self._read(CHUNK)
             if chunk == PROC_IN_PROGRESS:
@@ -616,8 +617,13 @@ def async_download(url, timeout=settings.TIME_OUT, loop=None,
     #             break
     #         f.write(chunk)
 
-    content = yield from response.recv(CHUNK)
+    bytes_str = yield from response.recv(CHUNK)
+    response._chunked = bytes_str
+    response._parse(bytes_str)
+
+    content = response.body
     image_buf = io.BytesIO(content)
+
     im = Image.open(image_buf)
     im.save(os.path.join(dirname, filename))
 
