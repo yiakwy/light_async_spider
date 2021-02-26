@@ -27,6 +27,7 @@ try:
 except:
     # py2
     from urlparse import urlparse, urlencode, quote_plus
+import http
 
 try:
     from asyncio import JoinableQueue as Queue
@@ -607,6 +608,7 @@ def async_download(url, timeout=settings.TIME_OUT, loop=None,
     
     logger.info("writing data to local file ...")
 
+    ## The codes works with http but not https
     # import pdb; pdb.set_trace()
     # with open(os.path.join(dirname, filename), "wb") as f:
     #     while True:
@@ -617,10 +619,32 @@ def async_download(url, timeout=settings.TIME_OUT, loop=None,
     #             break
     #         f.write(chunk)
 
-    bytes_str = yield from response.recv(CHUNK)
+    is_complete = False
+    total_read = -1
+    content_length = -1
+    bytes_str = b''
+    while not is_complete:
+        chunk = yield from response.recv(CHUNK)
+        bytes_str += chunk
+
+        if content_length == -1:
+            response._chunked = bytes_str
+            response._parse(bytes_str) # TODO to be optimized
+
+        try:
+            total_read = len(response.body)
+            if content_length == -1:
+                content_length = int(response.get_header('CONTENT-LENGTH'))
+            if  total_read >= content_length:
+                break
+        except http.client.IncompleteRead:
+            pass
+        except Exception as e:
+            print(e)
+            SystemExit(e)
+
     response._chunked = bytes_str
     response._parse(bytes_str)
-
     content = response.body
     image_buf = io.BytesIO(content)
 
