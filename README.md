@@ -8,7 +8,7 @@ Asynchronous Mini Spider with native asynchronous I/O HTTPS, and webkit support 
 
 全异步轻量级爬虫, 原生支持Multiplexing和异步I/O，支持HTTPS, WebKit技术(定义和实现了"远程注入js调用"无线协议)
 
-异步框架python版本改编思路来自于 Guido van Rossum 在不早于2015年的社区文章[A Web Crawler With Asyncio Crotoutines](www.aosabook.org/en/500L/a-web-crawler-with-asyncio-coroutines.html#fn2), 并重点支持了webkit, https, 以及 socket 异步io回调技术改进。改进后的组件，可以水平无限扩展（任意I/O时间，包括不限socket, pipe, 磁盘文件），在不考虑单线程流量限制的情况下，最大限度利用了单线程的I/O性能。
+异步框架python版本改编思路来自于 Guido van Rossum 在不早于2015年的社区文章[A Web Crawler With Asyncio Crotoutines](https://www.aosabook.org/en/500L/a-web-crawler-with-asyncio-coroutines.html#fn2), 并重点支持了webkit, https, 以及 socket 异步io回调技术改进。改进后的组件，可以水平无限扩展（任意I/O时间，包括不限socket, pipe, 磁盘文件），在不考虑单线程流量限制的情况下，最大限度利用了单线程的I/O性能。
 
 项目背景
 ---
@@ -126,7 +126,7 @@ RoadMap:
 
 downloader剩下I/O策略，处理http/https请求，重定向，媒体文件访问等。
 
-特别地我们实现了异步I/O下的http/https文件访问读取策略。并提供了webkit\_runtime_downloader作为扩展，证明精简框架中的代码可扩展性。
+特别地我们实现了异步I/O下的http/https文件访问读取策略。并提供了webkit_runtime_downloader作为扩展，证明精简框架中的代码可扩展性。
 
 其主要逻辑为：主现场执行 I/O 轮询，并通过callback发起中断，跳转到代码执行区。该过程会在回调函数内部嵌套，以实现多类型I/O的整合，并最终完成多路I/O单线程并行技术。
 
