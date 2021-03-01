@@ -8,7 +8,7 @@
 # reference:
 #     1. https://stackoverflow.com/questions/28508374/ssl-connect-for-non-blocking-socket
 #     2. https://github.com/darrenjs/openssl_examples
-#     3.
+#     3. #
 
 import os
 import logging
